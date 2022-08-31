@@ -1,0 +1,29 @@
+<h1><%= @list.name %></h1>
+<%= link_to 'Edit', edit_list_path %>
+<%= link_to 'Destroy', list_path(@list), method: :delete, data: { confirm: 'Are you sure you want to destroy this list?'}%>
+<br>
+<br>
+
+<h3>Your Tasks:</h3>
+<% @list.tasks.each do |t| %>
+    <div style="display: flex;">
+        <p><%= t.name %></p>  
+        <span style="padding-top: 15px; padding-left: 10px;"><%= link_to 'Done', [t.list, t], method: :delete %></span>              
+    </div>    
+    
+<% end %>
+
+<h4 style="text-decoration: underline;">Add Task:</h4>
+
+<%= form_for([@list, @list.tasks.build]) do |l| %>
+  <p>
+    Task <%= l.label :name %>:
+    <br>
+    <%= l.text_field :name %>
+  </p>
+  <p>
+    <%= l.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', lists_path %>

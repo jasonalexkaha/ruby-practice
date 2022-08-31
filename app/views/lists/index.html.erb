@@ -1,0 +1,10 @@
+<h1>Hello from index Lists</h1>
+<%= link_to 'Make new List', new_list_path %>
+
+<% @lists.each do |l| %>
+
+<h3>    
+    <%= link_to l.name, list_path(l) %>    
+</h3>    
+
+<% end %>
